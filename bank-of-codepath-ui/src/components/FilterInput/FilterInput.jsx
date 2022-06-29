@@ -5,7 +5,7 @@ export default function FilterInput({ inputValue, handleOnChange }) {
   return (
     <div className="filter-input">
       <i className="material-icons">search</i>
-      <input inputValue={inputValue} onChange={handleOnChange} type="text" placeholder="Search transactions" value={""} />
+      <input value={inputValue} onChange={handleOnChange} type="text" placeholder="Search transactions" />
     </div>
   );
 }
