@@ -1,16 +1,23 @@
-import * as React from "react"
-import FilterInput from "../FilterInput/FilterInput"
-import codepath from "../../assets/codepath.svg"
-import avatar from "../../assets/avatar.png"
-import "./Navbar.css"
+import * as React from "react";
+import FilterInput from "../FilterInput/FilterInput";
+import codepath from "../../assets/codepath.svg";
+import avatar from "../../assets/avatar.png";
+import "./Navbar.css";
+import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ filterInputValue, setFilterInputValue }) {
+  const handleOnInputChange = (change) => {
+    // The `setFilterInputValue` function its called with the new `value` from the `input` element when the `handleOnInputChange` function was called.
+    setFilterInputValue(change.target.value);
+  };
+
   return (
     <nav className="navbar">
       <a className="logo">Logo</a>
-
+      <Logo path="/" />
       <div className="search">
-        <FilterInput />
+        {/* FilterInpput calls its `handleOnChange` prop whenever the input value changes. */}
+        <FilterInput inputValue={filterInputValue} handleOnChange={handleOnInputChange} />
       </div>
 
       <div className="user">
@@ -27,13 +34,15 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export function Logo() {
+export function Logo({ path }) {
   return (
     <a className="logo">
-      <img src={codepath} alt="logo" />
+      <Link to="/">
+        <img src={codepath} alt="logo" />
+      </Link>
     </a>
-  )
+  );
 }
